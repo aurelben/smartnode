@@ -1,0 +1,23 @@
+<div class="col_12">
+    <ul class="menu">
+        {% for item_menu in menu %}
+            <li>
+            {% if item_menu.child is iterable %}
+                <li>
+                    <a href="{{ item_menu.url }}>{{ item_menu.title }} <b></b></a>
+                    <ul>
+                        {% for child_item_menu in item_menu.child %}
+                            <li><a href="{{ child_item_menu.url }}">{{ child_item_menu.title }}</a></li>
+                        {% endfor %}
+                    </ul>
+                </li>
+            {% else %}
+                <li><a href="{{ item_menu.url }}">{{ item_menu.title }}</a></li>
+            {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+    <ul>
+        <li><a href="#">Ajouter un produit</a></li>
+    </ul>
+</div>

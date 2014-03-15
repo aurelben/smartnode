@@ -1,0 +1,12 @@
+smartnode_menu:
+    resource: "@SmartnodeMenuBundle/Resources/config/routing.yml"
+    prefix:   /
+
+smartnodeuser:
+    resource: "@SmartnodeuserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+smartnode_talk:
+    resource: "@SmartnodeTalkBundle/Resources/config/routing.yml"
+    prefix:   /
+

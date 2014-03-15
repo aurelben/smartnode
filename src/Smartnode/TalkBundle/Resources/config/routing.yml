@@ -1,0 +1,55 @@
+smartnode_talk_hellopage:
+    pattern:  /hello/{name}
+    defaults: { _controller: SmartnodeTalkBundle:Default:index }
+
+smartnode_talk_homepage:
+    pattern:  /
+    defaults: { _controller: SmartnodeTalkBundle:Talk:index }
+
+smartnode_talk_chan:
+    pattern:  /chan
+    defaults: { _controller: SmartnodeTalkBundle:Talk:chan }
+
+smartnode_talk_chanadd:
+    pattern:  /chan/add
+    defaults: { _controller: SmartnodeTalkBundle:talk:addChan }
+
+smartnode_talk_chanview:
+    pattern:  /chan/view/{id}
+    defaults: { _controller: SmartnodeTalkBundle:Talk:viewChan }
+
+smartnode_talk_chanlist:
+    pattern:  /chan/list
+    defaults: { _controller: SmartnodeTalkBundle:Talk:listChan }
+
+smartnode_talk_chanupdate:
+    pattern:  /chan/update/{id}
+    defaults: { _controller: SmartnodeTalkBundle:Talk:updateChan }
+
+smartnode_talk_chandel:
+    pattern:  /chan/del/{id}
+    defaults: { _controller: SmartnodeTalkBundle:Talk:delChan }
+
+smartnode_talk_post:
+    pattern:  /post/view/{id}
+    defaults: { _controller: SmartnodeTalkBundle:Talk:viewPost }
+
+smartnode_talk_postadd:
+    pattern:  /post/add
+    defaults: { _controller: SmartnodeTalkBundle:Talk:addPost }
+
+smartnode_talk_postlist:
+    pattern:  /post/list/
+    defaults: { _controller: SmartnodeTalkBundle:Talk:listPost }
+
+smartnode_talk_postupdate:
+    pattern:  /post/update/{id}
+    defaults: { _controller: SmartnodeTalkBundle:Talk:updatePost }
+
+smartnode_talk_postdel:
+    pattern:  /post/del/{id}
+    defaults: { _controller: SmartnodeTalkBundle:Talk:delPost }
+
+post:
+    resource: "@SmartnodeTalkBundle/Controller"
+    type:     annotation

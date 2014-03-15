@@ -1,0 +1,7 @@
+parameters:
+#    smartnode_menu.example.class: Smartnode\MenuBundle\Example
+
+services:
+#    smartnode_menu.example:
+#        class: %smartnode_menu.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

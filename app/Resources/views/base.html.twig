@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+{% block head %}
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/smartnodetalk/css/kickstart.css') }}" media="all" />                  <!-- KICKSTART -->
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/smartnodetalk/css/style.css') }}" media="all" />                          <!-- CUSTOM STYLES -->
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+        <script type="text/javascript" src="{{ asset('bundles/smartnodetalk/js/kickstart.js') }}"></script>
+        <link href="{{ asset('bundles/smartnodetalk/css/jquery.urlive.css')}}" rel="stylesheet" />
+        <script src="{{ asset('bundles/smartnodetalk/js/jquery.urlive.js')}}"></script>
+
+
+    </head>
+    {% endblock %}
+    <body>
+
+
+
+
+        {% block body %}
+            {% block nav %}
+
+                    {{ render(controller('SmartnodeMenuBundle:Menu:displayMenu')) }}
+
+
+            {% endblock %}
+
+
+            <div class="grid" >
+
+        
+
+        </div> {% endblock %}
+        
+        
+
+        {% block footer%}
+        <div class="clear"></div>
+        <div id="footer">
+&copy; Copyright 2013–2014 All Rights Reserved. This website was built with <a href="http://www.99lime.com">HTML KickStart</a>
+</div>
+        {% endblock %}
+
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>
