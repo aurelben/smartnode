@@ -25,28 +25,28 @@ class Chan
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Smartnode\userBundle\Entity\User")
-     * @ORM\JoinColumn(name="chanowner_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="chanowner_id", referencedColumnName="id", nullable=true)
      */
     private $ownerid;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="channame", type="string", length=255)
+     * @ORM\Column(name="channame", type="string", length=255, nullable=true)
      */
-    private $channame;
+    protected $channame;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="chanpass", type="string", length=255)
+     * @ORM\Column(name="chanpass", type="string", length=255, nullable=true)
      */
     private $chanpass;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="creationdate", type="datetime")
+     * @ORM\Column(name="creationdate", type="datetime", nullable=true)
      */
     private $creationdate;
 
@@ -60,7 +60,7 @@ class Chan
     /**
      * @var integer
      *
-     * @ORM\Column(name="actived", type="smallint")
+     * @ORM\Column(name="actived", type="smallint", nullable=true)
      */
     private $actived;
 
@@ -78,6 +78,16 @@ class Chan
      * @return integer 
      */
     public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Get chanid
+     *
+     * @return integer
+     */
+    public function getChanId()
     {
         return $this->id;
     }
@@ -241,5 +251,28 @@ class Chan
     public function getScore()
     {
         return $this->score;
+    }
+
+    /**
+     * Set owner
+     *
+     * @param \Smartnode\userBundle\Entity\User $owner
+     * @return Chan
+     */
+    public function setOwner(\Smartnode\userBundle\Entity\User $owner = null)
+    {
+        $this->owner = $owner;
+
+        return $this;
+    }
+
+    /**
+     * Get owner
+     *
+     * @return \Smartnode\userBundle\Entity\User 
+     */
+    public function getOwner()
+    {
+        return $this->owner;
     }
 }

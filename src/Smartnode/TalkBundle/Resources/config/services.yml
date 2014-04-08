@@ -5,3 +5,8 @@ services:
 #    smartnode_talk.example:
 #        class: %smartnode_talk.example.class%
 #        arguments: [@service_id, "plain_value", %parameter%]
+
+    smartnode_talk.type.talk:
+        class: Smartnode\TalkBundle\Form\Type\PostChanType
+        tags:
+            - { name: postchan.type, alias: postchan }

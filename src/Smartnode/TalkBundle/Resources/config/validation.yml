@@ -1,0 +1,7 @@
+Smartnode\TalkBundl\Entity\Chan:
+    properties:
+        channame:
+            - Length:
+                min: 3
+                minMessage: Donne moi un peu plus de détails
+            - NotBlank: ~

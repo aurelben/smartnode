@@ -10,3 +10,9 @@ smartnode_talk:
     resource: "@SmartnodeTalkBundle/Resources/config/routing.yml"
     prefix:   /
 
+#REST
+rest :
+  type : rest
+  resource : "routing_rest.yml"
+  prefix : /api
+

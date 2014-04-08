@@ -1,23 +1,34 @@
-<div class="col_12">
-    <ul class="menu">
-        {% for item_menu in menu %}
+<nav>
+    <section>
+        <ul class="menu">
+
             <li>
-            {% if item_menu.child is iterable %}
-                <li>
-                    <a href="{{ item_menu.url }}>{{ item_menu.title }} <b></b></a>
-                    <ul>
-                        {% for child_item_menu in item_menu.child %}
-                            <li><a href="{{ child_item_menu.url }}">{{ child_item_menu.title }}</a></li>
-                        {% endfor %}
-                    </ul>
-                </li>
-            {% else %}
-                <li><a href="{{ item_menu.url }}">{{ item_menu.title }}</a></li>
-            {% endif %}
+                <a href="#">Channel</a>
+                <ul>
+                    {% for cat  in menu %}
+                        <li><a href="{{ path( 'smartnode_talk_chanview', {'id': cat.id } )}}">{{ cat.channame }}</a></li>
+                    {% endfor %}
+                </ul>
             </li>
-        {% endfor %}
-    </ul>
-    <ul>
-        <li><a href="#">Ajouter un produit</a></li>
-    </ul>
-</div>
+
+            <li>
+                <a href="{{ path( 'fos_user_security_login' )}}">Login</a>
+                <ul>
+
+                        <li><a href="{{ path( 'fos_user_security_logout' )}}">Logout</a></li>
+
+                </ul>
+            </li>
+            <li>
+                <a href="{{ path( 'smartnode_talk_chanadd' )}}">New Channel</a>
+
+            </li>
+            <li>
+                <a href="{{ path( 'smartnode_talk_postadd' )}}">New Post</a>
+
+            </li>
+
+
+        </ul>
+    </section>
+</nav>

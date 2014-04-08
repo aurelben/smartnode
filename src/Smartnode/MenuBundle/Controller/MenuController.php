@@ -6,10 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 class MenuController extends Controller
 {
-    public function indexAction($name)
-    {
-        return $this->render('SmartnodeMenuBundle:Menu:index.html.twig', array('name' => $name));
-    }
+
 
 
 
@@ -19,7 +16,7 @@ class MenuController extends Controller
         $chanrepo = $em->getRepository('SmartnodeTalkBundle:Chan');
         $chanlist = $chanrepo->findAll();
 
-        $chanmenu = array();
+        //$chanmenu = array();
         foreach ($chanlist as $chanview) {
 
             $chanmenu[] = array('channame'=> $chanview->getChanname(), $this->generateUrl('smartnode_talk_chanview', array('id' => $chanview->getId())));
@@ -33,7 +30,7 @@ class MenuController extends Controller
                 'child' => $chanmenu
             ),
         );
-        return $this->render('SmartnodeMenuBundle:Menu:primary_menu.html.twig', array('menu' => $primary_menu));
+        return $this->render('SmartnodeMenuBundle:Menu:primary_menu.html.twig', array('menu' => $chanlist));
 
 
 

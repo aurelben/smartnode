@@ -1,9 +1,18 @@
 {% extends "SmartnodeTalkBundle::layout.html.twig" %}
 
 {% block body %}
-<div class="boite col_3">
 
-<h2>Hello {{ name }}<h2>
+    <h1>Ajouter un Channel</h1>
+
+
+    <div class="boite col_4">
+
+    {{ form(formulaire) }}
+
+        {{ form_errors(formulaire) }}
+
+        {# affiche les erreurs "globales" #}
+        {{ form_errors(formulaire) }}
 
 </div>
 

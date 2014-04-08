@@ -3,12 +3,17 @@
 namespace Smartnode\TalkBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\VirtualProperty;
 
 /**
  * Post
  *
  * @ORM\Table()
  * @ORM\Entity(repositoryClass="Smartnode\TalkBundle\Entity\PostRepository")
+ * @ExclusionPolicy("all")
  */
 class Post
 {
@@ -18,6 +23,7 @@ class Post
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Expose
      */
     private $id;
 
@@ -26,6 +32,7 @@ class Post
      *
      * @ORM\ManyToOne(targetEntity="Smartnode\userBundle\Entity\User")
      * @ORM\JoinColumn(name="postowner_id", referencedColumnName="id")
+     * @Expose
      */
     protected $postowner;
 
@@ -33,6 +40,7 @@ class Post
      * @var integer
      *
      * @ORM\ManyToOne(targetEntity="Smartnode\TalkBundle\Entity\Chan")
+     * @Expose
      */
     private $postchan;
 
@@ -40,6 +48,7 @@ class Post
      * @var \DateTime
      *
      * @ORM\Column(name="creationdate", type="datetime")
+     * @Expose
      */
     private $creationdate;
 
@@ -47,20 +56,21 @@ class Post
      * @var string
      *
      * @ORM\Column(name="postcontent", type="text")
+     * @Expose
      */
     private $postcontent;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="activated", type="smallint")
+     * @ORM\Column(name="activated", type="smallint", nullable=true)
      */
     private $activated;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="modifidate", type="datetime")
+     * @ORM\Column(name="modifidate", type="datetime", nullable=true)
      */
     private $modifidate;
 

@@ -15,13 +15,11 @@ class PostType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('creationdate')
-            ->add('postcontent')
-            ->add('activated')
-            ->add('modifidate')
-            ->add('score')
-            ->add('postowner')
-            ->add('postchan')
+
+            ->add('postcontent', 'textarea', array('attr' => array('class' => 'textarea')))
+            ->add('postchan','entity', array('class' => 'SmartnodeTalkBundle:Chan', 'property' => 'channame', 'multiple' => false))
+            ->add('save', 'submit')
+
         ;
     }
     

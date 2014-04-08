@@ -13,8 +13,8 @@ class __TwigTemplate_cb3e61bf6d5b08d66f84cb376f6899b764947cd5dd382ec0090452ef9c2
             'head' => array($this, 'block_head'),
             'title' => array($this, 'block_title'),
             'stylesheets' => array($this, 'block_stylesheets'),
-            'body' => array($this, 'block_body'),
             'nav' => array($this, 'block_nav'),
+            'body' => array($this, 'block_body'),
             'footer' => array($this, 'block_footer'),
             'javascripts' => array($this, 'block_javascripts'),
         );
@@ -28,28 +28,31 @@ class __TwigTemplate_cb3e61bf6d5b08d66f84cb376f6899b764947cd5dd382ec0090452ef9c2
 ";
         // line 3
         $this->displayBlock('head', $context, $blocks);
-        // line 21
+        // line 62
         echo "    <body>
-
-
+    ";
+        // line 63
+        $this->displayBlock('nav', $context, $blocks);
+        // line 69
+        echo "
 
 
         ";
-        // line 26
+        // line 72
         $this->displayBlock('body', $context, $blocks);
-        // line 40
+        // line 81
         echo "        
         
 
         ";
-        // line 43
+        // line 84
         $this->displayBlock('footer', $context, $blocks);
-        // line 49
+        // line 90
         echo "
         ";
-        // line 50
+        // line 91
         $this->displayBlock('javascripts', $context, $blocks);
-        // line 51
+        // line 92
         echo "    </body>
 </html>
 ";
@@ -87,14 +90,64 @@ class __TwigTemplate_cb3e61bf6d5b08d66f84cb376f6899b764947cd5dd382ec0090452ef9c2
         // line 14
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/smartnodetalk/js/kickstart.js"), "html", null, true);
         echo "\"></script>
-        <link href=\"";
+        <link rel=\"stylesheet\" type=\"text/css\" href=\"";
         // line 15
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/smartnodetalk/css/jquery.urlive.css"), "html", null, true);
-        echo "\" rel=\"stylesheet\" />
-        <script src=\"";
+        echo "\"/>
+        <script type=\"text/javascript\" src=\"";
         // line 16
         echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/smartnodetalk/js/jquery.urlive.js"), "html", null, true);
         echo "\"></script>
+        <link rel=\"stylesheet\" type=\"text/css\" href=\"";
+        // line 17
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/smartnodetalk/css/jquery.cleditor.css"), "html", null, true);
+        echo "\" />
+        <script type=\"text/javascript\" src=\"";
+        // line 18
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/smartnodetalk/js/jquery.min.js"), "html", null, true);
+        echo "\"></script>
+        <script type=\"text/javascript\" src=\"";
+        // line 19
+        echo twig_escape_filter($this->env, $this->env->getExtension('assets')->getAssetUrl("bundles/smartnodetalk/js/jquery.cleditor.min.js"), "html", null, true);
+        echo "\"></script>
+        <script type=\"text/javascript\">
+
+            \$(document).ready(function () { \$(\"#smartnode_talkbundle_post_postcontent\").cleditor({
+                width:        'auto', // width not including margins, borders or padding
+                height:       250, // height not including margins, borders or padding
+                controls:     // controls to add to the toolbar
+                        \"bold italic underline strikethrough subscript superscript | font size \" +
+                                \"style | color highlight removeformat \" +
+                                \"alignleft center alignright justify | undo redo | \" +
+                                \"rule image link unlink\",
+                colors:       // colors in the color popup
+                        \"FFF FCC FC9 FF9 FFC 9F9 9FF CFF CCF FCF \" +
+                                \"CCC F66 F96 FF6 FF3 6F9 3FF 6FF 99F F9F \" +
+                                \"BBB F00 F90 FC6 FF0 3F3 6CC 3CF 66C C6C \" +
+                                \"999 C00 F60 FC3 FC0 3C0 0CC 36F 63F C3C \" +
+                                \"666 900 C60 C93 990 090 399 33F 60C 939 \" +
+                                \"333 600 930 963 660 060 366 009 339 636 \" +
+                                \"000 300 630 633 330 030 033 006 309 303\",
+                fonts:        // font names in the font popup
+                        \"Arial,Arial Black,Comic Sans MS,Courier New,Narrow,Garamond,\" +
+                                \"Georgia,Impact,Sans Serif,Serif,Tahoma,Trebuchet MS,Verdana\",
+                sizes:        // sizes in the font size popup
+                        \"1,2,3,4,5,6,7\",
+                styles:       // styles in the style popup
+                        [[\"Paragraph\", \"<p>\"], [\"Header 1\", \"<h1>\"], [\"Header 2\", \"<h2>\"],
+                            [\"Header 3\", \"<h3>\"],  [\"Header 4\",\"<h4>\"],  [\"Header 5\",\"<h5>\"],
+                            [\"Header 6\",\"<h6>\"]],
+                useCSS:       false, // use CSS to style HTML when possible (not supported in ie)
+                docType:      // Document type contained within the editor
+                        '<!DOCTYPE HTML>',
+                docCSSFile:   // CSS file used to style the document contained within the editor
+                        \"\",
+                bodyStyle:    // style to assign to document body contained within the editor
+                        \"margin:4px; font:10pt Arial,Verdana; cursor:text; color:white\"
+            }); });
+        </script>
+
+
 
 
     </head>
@@ -112,14 +165,26 @@ class __TwigTemplate_cb3e61bf6d5b08d66f84cb376f6899b764947cd5dd382ec0090452ef9c2
     {
     }
 
-    // line 26
+    // line 63
+    public function block_nav($context, array $blocks = array())
+    {
+        // line 64
+        echo "
+        ";
+        // line 65
+        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("SmartnodeMenuBundle:Menu:displayMenu"));
+        echo "
+
+
+    ";
+    }
+
+    // line 72
     public function block_body($context, array $blocks = array())
     {
-        // line 27
-        echo "            ";
-        $this->displayBlock('nav', $context, $blocks);
-        // line 33
+        // line 73
         echo "
+
 
             <div class=\"grid\" >
 
@@ -128,32 +193,18 @@ class __TwigTemplate_cb3e61bf6d5b08d66f84cb376f6899b764947cd5dd382ec0090452ef9c2
         </div> ";
     }
 
-    // line 27
-    public function block_nav($context, array $blocks = array())
-    {
-        // line 28
-        echo "                
-                    ";
-        // line 29
-        echo $this->env->getExtension('http_kernel')->renderFragment($this->env->getExtension('http_kernel')->controller("SmartnodeMenuBundle:Menu:displayMenu"));
-        echo "
-
-
-            ";
-    }
-
-    // line 43
+    // line 84
     public function block_footer($context, array $blocks = array())
     {
-        // line 44
+        // line 85
         echo "        <div class=\"clear\"></div>
         <div id=\"footer\">
-&copy; Copyright 2013–2014 All Rights Reserved. This website was built with <a href=\"http://www.99lime.com\">HTML KickStart</a>
+ &copy; Copyright 2013–2014 All Rights Reserved. This website was built with <a href=\"http://www.99lime.com\">HTML KickStart</a>
 </div>
         ";
     }
 
-    // line 50
+    // line 91
     public function block_javascripts($context, array $blocks = array())
     {
     }
@@ -165,6 +216,6 @@ class __TwigTemplate_cb3e61bf6d5b08d66f84cb376f6899b764947cd5dd382ec0090452ef9c2
 
     public function getDebugInfo()
     {
-        return array (  157 => 50,  149 => 44,  146 => 43,  138 => 29,  135 => 28,  132 => 27,  122 => 33,  119 => 27,  116 => 26,  111 => 9,  105 => 8,  96 => 16,  92 => 15,  88 => 14,  83 => 12,  79 => 11,  74 => 10,  72 => 9,  68 => 8,  62 => 4,  59 => 3,  53 => 51,  51 => 50,  48 => 49,  46 => 43,  41 => 40,  39 => 26,  32 => 21,  30 => 3,  26 => 1,);
+        return array (  208 => 91,  200 => 85,  197 => 84,  186 => 73,  183 => 72,  175 => 65,  172 => 64,  169 => 63,  164 => 9,  158 => 8,  111 => 19,  107 => 18,  103 => 17,  99 => 16,  95 => 15,  91 => 14,  86 => 12,  82 => 11,  77 => 10,  75 => 9,  71 => 8,  65 => 4,  62 => 3,  56 => 92,  54 => 91,  51 => 90,  49 => 84,  44 => 81,  42 => 72,  37 => 69,  35 => 63,  32 => 62,  30 => 3,  26 => 1,);
     }
 }

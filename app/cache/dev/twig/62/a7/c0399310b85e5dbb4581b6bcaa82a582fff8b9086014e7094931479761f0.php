@@ -30,10 +30,7 @@ class __TwigTemplate_62a7c0399310b85e5dbb4581b6bcaa82a582fff8b9086014e7094931479
         // line 4
         echo "<div class=\"boite col_3\">
 
-<h2>Hello ";
-        // line 6
-        echo twig_escape_filter($this->env, (isset($context["name"]) ? $context["name"] : $this->getContext($context, "name")), "html", null, true);
-        echo "<h2>
+<h2>Hello Smartnode<h2>
 
 </div>
 
@@ -52,6 +49,6 @@ class __TwigTemplate_62a7c0399310b85e5dbb4581b6bcaa82a582fff8b9086014e7094931479
 
     public function getDebugInfo()
     {
-        return array (  35 => 6,  31 => 4,  28 => 3,);
+        return array (  31 => 4,  28 => 3,);
     }
 }

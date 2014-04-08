@@ -25,35 +25,35 @@ class User extends BaseUser
     /**
      * @var string
      *
-     * @ORM\Column(name="gender", type="string", length=255)
+     * @ORM\Column(name="gender", type="string", length=255, nullable=true)
      */
     private $gender;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="avatar", type="text")
+     * @ORM\Column(name="avatar", type="text", nullable=true)
      */
     private $avatar;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="borndate", type="date")
+     * @ORM\Column(name="borndate", type="date", nullable=true)
      */
     private $borndate;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="actived", type="integer")
+     * @ORM\Column(name="actived", type="integer", nullable=true)
      */
     private $actived;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="lastactive", type="date")
+     * @ORM\Column(name="lastactive", type="date", nullable=true)
      */
     private $lastactive;
 
@@ -181,5 +181,15 @@ class User extends BaseUser
     public function getLastactive()
     {
         return $this->lastactive;
+    }
+
+    /**
+     * Get expiresAt
+     *
+     * @return \DateTime
+     */
+    public function getExpiresAt()
+    {
+        return $this->expiresAt;
     }
 }

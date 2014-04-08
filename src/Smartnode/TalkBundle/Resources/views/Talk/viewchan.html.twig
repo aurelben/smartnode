@@ -1,10 +1,48 @@
 {% extends "SmartnodeTalkBundle::layout.html.twig" %}
 
 {% block body %}
-<div class="boite col_3">
+<script type="text/javascript">
+    /*$(window).load(function(){
+        $('section').urlive({container: '.urllive'})
+    });*/
 
-<h2>Hello {{ name }}<h2>
+    $('section').urlive().hover(function(){
+        $(this).urlive('open');
+    });
+
+</script>
+
+<div class="boite col_12">
+
+<h2>Channel: {{ chan.Channame }}</h2>
+
 
 </div>
+    <div class="col_3"></div>
+
+    <div class="col_6">
+        {#<div>{{ render(controller('SmartnodeTalkBundle:Talk:addPostChan', {'request': app.request})) }}</div>#}
+        <div>{{ form(formulaire) }}</div>
+
+        {% for input in post %}
+
+
+            <div class="boite"><span class="boite"><p>Posted: {{ (input.creationdate|date( "d/m/Y", false )) }} By: {{ input.postowner }}</p></span></div>
+            <section class="boite"> <p>{{ input.postcontent }}</p>
+            <div class="urlive-container"></div>
+            </section>
+            <br/>
+
+
+
+{% endfor %}
+    </div>
+
+    <div class="col_3"></div>
+
+
+
+
 
 {% endblock %}
+

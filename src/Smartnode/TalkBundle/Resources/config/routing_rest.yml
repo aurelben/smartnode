@@ -1,0 +1,4 @@
+users :
+  type: rest
+  resource:     "SmartnodeTalkBundle:TalkRest"
+  name_prefix:  api_

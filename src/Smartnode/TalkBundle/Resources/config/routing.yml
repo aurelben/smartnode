@@ -16,7 +16,9 @@ smartnode_talk_chanadd:
 
 smartnode_talk_chanview:
     pattern:  /chan/view/{id}
-    defaults: { _controller: SmartnodeTalkBundle:Talk:viewChan }
+    defaults: { _controller: SmartnodeTalkBundle:Talk:viewChan, _format: html }
+    requirements:
+            _format: html|json
 
 smartnode_talk_chanlist:
     pattern:  /chan/list
@@ -50,6 +52,3 @@ smartnode_talk_postdel:
     pattern:  /post/del/{id}
     defaults: { _controller: SmartnodeTalkBundle:Talk:delPost }
 
-post:
-    resource: "@SmartnodeTalkBundle/Controller"
-    type:     annotation

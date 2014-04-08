@@ -408,7 +408,7 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
 
             // smartnode_talk_chanview
             if (0 === strpos($pathinfo, '/chan/view') && preg_match('#^/chan/view/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'smartnode_talk_chanview')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\TalkController::viewChanAction',));
+                return $this->mergeDefaults(array_replace($matches, array('_route' => 'smartnode_talk_chanview')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\TalkController::viewChanAction',  '_format' => 'html',));
             }
 
             // smartnode_talk_chanlist
@@ -458,88 +458,18 @@ class appDevUrlMatcher extends Symfony\Bundle\FrameworkBundle\Routing\Redirectab
                 return $this->mergeDefaults(array_replace($matches, array('_route' => 'smartnode_talk_postdel')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\TalkController::delPostAction',));
             }
 
-            // post
-            if (rtrim($pathinfo, '/') === '/post') {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_post;
-                }
-
-                if (substr($pathinfo, -1) !== '/') {
-                    return $this->redirect($pathinfo.'/', 'post');
-                }
-
-                return array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::indexAction',  '_route' => 'post',);
-            }
-            not_post:
-
-            // post_create
-            if ($pathinfo === '/post/') {
-                if ($this->context->getMethod() != 'POST') {
-                    $allow[] = 'POST';
-                    goto not_post_create;
-                }
-
-                return array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::createAction',  '_route' => 'post_create',);
-            }
-            not_post_create:
-
-            // post_new
-            if ($pathinfo === '/post/new') {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_post_new;
-                }
-
-                return array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::newAction',  '_route' => 'post_new',);
-            }
-            not_post_new:
-
-            // post_show
-            if (preg_match('#^/post/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_post_show;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_show')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::showAction',));
-            }
-            not_post_show:
-
-            // post_edit
-            if (preg_match('#^/post/(?P<id>[^/]++)/edit$#s', $pathinfo, $matches)) {
-                if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
-                    $allow = array_merge($allow, array('GET', 'HEAD'));
-                    goto not_post_edit;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_edit')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::editAction',));
-            }
-            not_post_edit:
-
-            // post_update
-            if (preg_match('#^/post/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'PUT') {
-                    $allow[] = 'PUT';
-                    goto not_post_update;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_update')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::updateAction',));
-            }
-            not_post_update:
-
-            // post_delete
-            if (preg_match('#^/post/(?P<id>[^/]++)$#s', $pathinfo, $matches)) {
-                if ($this->context->getMethod() != 'DELETE') {
-                    $allow[] = 'DELETE';
-                    goto not_post_delete;
-                }
-
-                return $this->mergeDefaults(array_replace($matches, array('_route' => 'post_delete')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\PostController::deleteAction',));
-            }
-            not_post_delete:
-
         }
+
+        // api_get_chan_post
+        if (0 === strpos($pathinfo, '/api/chans') && preg_match('#^/api/chans/(?P<idchan>[^/\\.]++)(?:\\.(?P<_format>xml|json|html))?$#s', $pathinfo, $matches)) {
+            if (!in_array($this->context->getMethod(), array('GET', 'HEAD'))) {
+                $allow = array_merge($allow, array('GET', 'HEAD'));
+                goto not_api_get_chan_post;
+            }
+
+            return $this->mergeDefaults(array_replace($matches, array('_route' => 'api_get_chan_post')), array (  '_controller' => 'Smartnode\\TalkBundle\\Controller\\TalkRestController::getChanPostAction',  '_format' => 'json',));
+        }
+        not_api_get_chan_post:
 
         // _welcome
         if (rtrim($pathinfo, '/') === '') {
