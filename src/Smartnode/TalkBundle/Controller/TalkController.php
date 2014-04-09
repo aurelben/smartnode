@@ -54,35 +54,27 @@ class TalkController extends Controller
         $em = $this->getDoctrine()->getManager();
         $repository = $em->getRepository('SmartnodeTalkBundle:Chan');
         $chan = $repository->find($id);
-        //$posts->$this->setPostchan($id);
-        $session->set('chanid', $id);
 
         $postrepo = $em->getRepository('SmartnodeTalkBundle:Post');
-        $listpost = $postrepo->findByPostchan($id);
+        $listpost = $postrepo->findByPostchan($id, array('id'=> 'DESC'));
 
-
-
-        $chanid = $session->get('chanid');
         $post = new Post();
 
         $user = $this->getUser();
 
         $form = $this->createForm(new PostChanType(), $post);
-        $form->handleRequest($request);
-
-        //echo "<pre>";print_r($request);echo "</pre>";
-        //echo $request->getMethod();
-        //echo $chanid;
 
 
 
-        //$form->bind($request);
-        if($request->isMethod('POST') && $form->handleRequest($request)->isValid())
+
+        //verification du formulaire
+        if($request->isMethod('POST') )
         {
+            if($form->handleRequest($request)->isValid()){
             $post->setCreationdate(new \DateTime('now'));
             $post->setPostowner($user);
-            //$chanid->$this->;
-            $post->setPostchan($chanid);
+
+            $post->setPostchan($chan);
             $em = $this->getDoctrine()->getManager();
             $em->persist($post);
             $em->flush();
@@ -90,6 +82,7 @@ class TalkController extends Controller
 
 
             return $this->redirect($this->generateUrl('smartnode_talk_post', array('id' => $post->getId())));
+            }
         }
 
 
